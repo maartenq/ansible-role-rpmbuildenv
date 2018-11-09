@@ -21,7 +21,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - role: rpmbuildenv
+         - role: maartenq.rpmbuildenv
 
 License
 -------
