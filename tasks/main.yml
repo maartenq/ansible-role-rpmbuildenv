@@ -1,0 +1,33 @@
+# tasks/main.yml
+# vim: ai et ts=2 sw=2 sts=2 fileencoding=utf-8 ft=yaml
+---
+- name: Check requirements
+  assert:
+    that: ansible_os_family == "RedHat"
+
+- name: Install packages for RPM Build Environment
+  become: yes
+  package:
+    name:
+      - rpm-build
+      - python-devel
+      - python-setuptools
+    state: present
+
+- name: Create directories for RPM Build Environment
+  file:
+    path: "{{ ansible_env.HOME }}/rpmbuild/{{ item }}"
+    state: directory
+    recurse: yes
+  with_items:
+    - BUILD
+    - RPMS
+    - SPECS
+    - SOURCES
+    - SRPMS
+
+- name: Create RPM macro file.
+  copy:
+    dest: "{{ ansible_env.HOME }}/.rpmmacros"
+    content: >
+      %_topdir %(echo $HOME)/rpmbuild

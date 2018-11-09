@@ -1,0 +1,16 @@
+# meta/main.yml
+# vim: ai et ts=2 sw=2 sts=2 fileencoding=utf-8 ft=yaml
+---
+galaxy_info:
+  role_name: rpmbuildenv
+  author: Maarten
+  description: Role to create a RPM build enviroment
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+  - name: EL
+    versions:
+    - all
+  galaxy_tags:
+    - system
+dependencies: []
